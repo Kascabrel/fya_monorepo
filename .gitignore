@@ -1,0 +1,54 @@
+# all the file that need to be ignored by git
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables and secrets
+.env
+*.env
+*.venv/
+
+# Virtual environments
+venv/
+.env/
+ENV/
+env/
+.venv/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and runtime files
+*.log
+*.pid
+
+# Test output
+coverage/
+htmlcov/
+.cache/
+.pytest_cache/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Docker
+*.tar
+*.bak
+docker-compose.override.yml
+
+# Database (if using SQLite)
+*.sqlite3
+*.db
+
+# Flask-specific
+instance/
+*.pem
+
+
