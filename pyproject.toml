@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "fya-monorepo"
+version = "0.1.0"
+description = "Monorepo for FYA microservices"
+authors = ["Steve Kamguia <kascabrel@gmail.com>"]
+packages = []
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+flask = "^2.3"
+pydantic = "^2.6"
+requests = "^2.31"
+sqlalchemy = "^2.0"
+psycopg2-binary = "^2.9"
+
+# Add dependancies in devellopment mode
+[tool.poetry.group.dev.dependencies.fya-auth-api]
+path = "modules/auth/api"
+develop = true
+
+[tool.poetry.group.dev.dependencies.fya-auth-impl]
+path = "modules/auth/api-impl"
+develop = true
+
+[tool.poetry.group.dev.dependencies.fya-auth-gateway]
+path = "modules/auth/gateway"
+develop = true
+
+[tool.poetry.group.dev.dependencies.fya-auth-service]
+path = "modules/auth/service"
+develop = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
