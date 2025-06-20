@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  auth:
+    build: ./services/auth
+    ports:
+      - "5001:5000"
+    env_file: .env
+  user:
+    build: ./services/user
+    ports:
+      - "5002:5000"
+    env_file: .env
+  translation:
+    build: ./services/translation
+    ports:
+      - "5003:5000"
+    env_file: .env
+  document:
+    build: ./services/document
+    ports:
+      - "5004:5000"
+    env_file: .env
+  gateway:
+    build: ./gateway
+    ports:
+      - "80:5000"
+    depends_on:
+      - auth
+      - user
+      - translation
+      - document
