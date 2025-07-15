@@ -1,10 +1,10 @@
 from typing import Optional
 from sqlalchemy.orm import Session
 
-from services.auth.core.models.user import User
-from services.auth.core.repository.user_repository import UserRepository
-from services.auth.infrastructure.db.models.db_user import UserDB
-from services.auth.infrastructure.mappers.user_mapper import userdb_to_user
+from core.models.user import User
+from core.repository.user_repository import UserRepository
+from infrastructure.db.models import UserDB
+from infrastructure.mappers.user_mapper import userdb_to_user
 
 
 class SQLUserRepository(UserRepository):
@@ -44,3 +44,10 @@ class SQLUserRepository(UserRepository):
         self.db_session.delete(user)
         self.db_session.commit()
         return True
+
+    def verify_password(self, user_id: str, password: str) -> bool:
+        user = self.get_user_by_id(user_id)
+        if not user:
+            return False
+        user_db = UserDB(id=user.id, email=user.email, password_hash=user.hashed_password, role=user.role)
+        return user_db.verify_password(password)

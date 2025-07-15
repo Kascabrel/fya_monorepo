@@ -1,5 +1,5 @@
 from services.auth.core.models.user import User
-from services.auth.infrastructure.db.models.db_user import UserDB
+from services.auth.infrastructure.db.models import UserDB
 
 
 def userdb_to_user(user_db: UserDB) -> User:

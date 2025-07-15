@@ -55,3 +55,14 @@ class UserRepository(ABC):
         :return: True if deletion was successful, False otherwise.
         """
         raise NotImplementedError("This method should be overridden by subclasses.")
+
+    @abstractmethod
+    def verify_password(self, user_id: str, password: str) -> bool:
+        """
+        Verifies the user's password.
+
+        :param user_id: The unique identifier of the user.
+        :param password: The password to verify.
+        :return: True if the password is correct, False otherwise.
+        """
+        raise NotImplementedError("This method should be overridden by subclasses.")
