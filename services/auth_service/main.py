@@ -1,11 +1,18 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
-from app.auth.api.routes import auth_routes
-from app.auth.infrastructure.db.session import engine
-from app.auth.infrastructure.db.models import UserDB
 
-app = FastAPI()
+from app.api.auth_endpoints import router
+from app.db import engine, Base
 
-# Crée les tables à partir du modèle UserDB
-UserDB.metadata.create_all(bind=engine)
 
-app.include_router(auth.router, prefix="/auth_service")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 💡create the table by start
+    Base.metadata.create_all(bind=engine)
+    yield  # server start her
+
+
+app = FastAPI(title="Authservice", lifespan=lifespan)
+
+app.include_router(router, prefix="/auth", tags=["auth"])

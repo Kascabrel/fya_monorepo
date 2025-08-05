@@ -1,5 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
-from typing import Optional
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 
 
 class UserBase(BaseModel):
@@ -14,17 +13,18 @@ class UserLogin(UserBase):
     password: str
 
 
-class UserOut(UserBase):
+from pydantic import BaseModel, ConfigDict
+
+
+class UserOut(BaseModel):
     id: int
+    email: str
     is_active: bool = True
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserInDB(UserBase):
     id: int
     hashed_password: str
     is_active: bool = True
-
-

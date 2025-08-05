@@ -1,24 +1,21 @@
-# Utilise une image officielle Python
-FROM python:3.11-slim
+# Image Python slim
+FROM python:3.12-slim
 
-# Définir le répertoire de travail dans le conteneur
+# Créer le dossier app
 WORKDIR /app
+ENV PYTHONPATH=/app
 
 # Installer Poetry
 RUN pip install --no-cache-dir poetry
 
-# Copier les fichiers de l’app
+# Copier uniquement les fichiers nécessaires à l’installation (pour la couche de cache Docker)
 COPY pyproject.toml poetry.lock* /app/
 
 # Installer les dépendances
 RUN poetry config virtualenvs.create false && \
     poetry install --no-root --no-interaction --no-ansi
 
-# Copier le reste de l’application
-COPY . /app
-
-# Exposer le port de l'API
+# Exposer le port
 EXPOSE 8000
 
-# Commande de démarrage
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Lancement automatique géré par docker-compose via `command`
