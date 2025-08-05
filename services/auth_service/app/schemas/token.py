@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
-from services.auth_service.app.schemas.user import UserOut  # pour LoginResponse (facultatif mais pratique)
+from app.schemas.user import UserOut  # pour LoginResponse (facultatif mais pratique)
 
 
 class TokenResponse(BaseModel):
