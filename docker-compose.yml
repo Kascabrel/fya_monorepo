@@ -1,31 +1,31 @@
-version: '3.9'
+version: "3.8"
+
 services:
-  auth:
-    build: services/auth_service
+  auth-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: auth_user
+      POSTGRES_PASSWORD: auth_pass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     ports:
-      - "5001:5000"
-    env_file: .env
-  user:
-    build: ./services/user
-    ports:
-      - "5002:5000"
-    env_file: .env
-  translation:
-    build: ./services/translation
-    ports:
-      - "5003:5000"
-    env_file: .env
-  document:
-    build: ./services/document
-    ports:
-      - "5004:5000"
-    env_file: .env
-  gateway:
-    build: ./gateway
-    ports:
-      - "80:5000"
+      - "5432:5432"
+
+  auth-app:
+    build:
+      context: .
+      dockerfile: service/auth_service/Dockerfile
     depends_on:
-      - auth
-      - user
-      - translation
-      - document
+      - auth-db
+    environment:
+      DATABASE_URL: postgresql://auth_user:auth_pass@db:5432/auth_db
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload  # reload pour dev
+
+volumes:
+  pgdata:
