@@ -74,7 +74,7 @@ def get_current_user(
 @router.get("/home", tags=["Auth"])
 def hello_world():
     """
-    Simple test route for API health check.
+    Simple tests route for API health check.
     """
     return {"hello": "Welcome to the home"}
 
@@ -137,7 +137,7 @@ def refresh_token(request: RefreshTokenRequest):
     """
     try:
         payload = decode_refresh_token(request.refresh_token)
-        email = payload.get("sub")
+        email = payload.sub
         if not email:
             raise HTTPException(status_code=401, detail="Invalid refresh token")
 

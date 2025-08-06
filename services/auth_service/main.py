@@ -13,6 +13,6 @@ async def lifespan(app: FastAPI):
     yield  # server start her
 
 
-app = FastAPI(title="Authservice", lifespan=lifespan)
+app: FastAPI = FastAPI(title="Authservice", lifespan=lifespan)
 
-app.include_router(router, prefix="/auth", tags=["auth"])
+app.include_router(router, tags=["auth"])
