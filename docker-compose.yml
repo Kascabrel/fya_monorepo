@@ -13,7 +13,7 @@ services:
     ports:
       - "5432:5432"
 
-  auth-app:
+  auth-service:
     build:
       context: ./services/auth_service
       dockerfile: Dockerfile
