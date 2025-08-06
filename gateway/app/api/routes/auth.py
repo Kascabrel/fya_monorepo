@@ -7,8 +7,8 @@ router = APIRouter()
 
 @router.get("/home")
 async def home():
-    async with httpx.AsyncClient(base_url="http://auth-service:8000") as client:
-        response = await client.get("/auth/home")
+    async with httpx.AsyncClient(base_url="http://localhost:8000") as client:
+        response = await client.get("/home")
         return response.json()
 
 
