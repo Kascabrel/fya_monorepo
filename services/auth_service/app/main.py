@@ -2,8 +2,8 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.api.auth_endpoints import router
-from app.db import engine, Base
+from api.auth_endpoints import router
+from db import engine, Base
 
 
 @asynccontextmanager

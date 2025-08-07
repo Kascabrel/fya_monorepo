@@ -11,10 +11,10 @@ from sqlalchemy.orm import sessionmaker
 from app.api.auth_endpoints import get_db
 from app.core.security import create_access_token
 from app.db import Base
-from app.schemas.user import UserCreate
+from shared.schemas.user import UserCreate
 
 from app.repository.user_repository import create_user
-from main import app
+from app.main import app
 
 # Use SQLite for testing
 SQLALCHEMY_DATABASE_URL = "sqlite:///./tests.db"

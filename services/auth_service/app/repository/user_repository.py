@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-from app.core.security import get_password_hash, verify_password
-from app.db.models.user import User
-from app.schemas.user import UserCreate
+from core.security import get_password_hash, verify_password
+from db.models.user import User
+from shared.schemas.user import UserCreate
 
 
 # Récupérer un utilisateur par email

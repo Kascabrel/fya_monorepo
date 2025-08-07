@@ -3,20 +3,20 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import jwt, JWTError
 from sqlalchemy.orm import Session
 
-from app.core.security import (
+from core.security import (
     create_access_token,
     decode_refresh_token,
     SECRET_KEY,
     ALGORITHM,
 )
-from app.db import sessionLocal
-from app.repository.user_repository import (
+from db import sessionLocal
+from repository.user_repository import (
     authenticate_user,
     get_by_email,
     create_user,
 )
-from app.schemas.user import UserCreate, UserOut
-from app.schemas.token import (
+from shared.schemas.user import UserCreate, UserOut
+from shared.schemas.token import (
     RefreshTokenRequest,
     RefreshTokenResponse,
     LoginResponse,

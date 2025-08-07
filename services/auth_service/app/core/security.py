@@ -9,7 +9,7 @@ from typing import Optional
 load_dotenv()
 
 
-from app.schemas.token import TokenData
+from shared.schemas.token import TokenData
 
 SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 ALGORITHM = os.getenv("JWT_ALGORITHM")

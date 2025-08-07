@@ -2,7 +2,7 @@
 FROM python:3.12-slim
 
 # Créer le dossier app
-WORKDIR /app
+WORKDIR /app/services/auth_service
 ENV PYTHONPATH=/app
 
 # Installer Poetry
