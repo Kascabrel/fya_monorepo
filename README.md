@@ -35,3 +35,11 @@ The system is built to handle translation requests efficiently by distributing r
 
 ## 📦 Project Structure
 
+fya_monorepo/ 
+├── gateway/ 
+├── auth-service/ 
+├── user-service/ 
+├── translating-service/ 
+├── messaging-service/ 
+├── docker-compose.yml 
+└── README.md
